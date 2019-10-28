@@ -22,9 +22,11 @@ export const Form = () => {
   };
 
   const addItem = event => {
-    if (event) event.preventDefault();
-    let data = tasks.slice(); // a copy of the state
-    setTasks([...data, task]);
+    event.preventDefault();
+    const todos = tasks.slice(); // making  copy of the array
+
+    setTasks([...todos, task]);
+    console.log(tasks);
   };
 
   // onDelete
