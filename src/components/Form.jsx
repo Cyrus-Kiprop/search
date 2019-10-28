@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { List } from "./List";
+
 let initialState = [
   "Wash the dishes",
   "Go to the store",
@@ -25,15 +27,24 @@ export const Form = () => {
     setTasks([...data, task]);
   };
 
+  // onDelete
+  const onDelete = item => {
+    console.log("clicked");
+    const data = tasks.slice();
+    data.map((a, i) => {
+      if (a === item) {
+        data.splice(i, 1); //mutative
+      }
+      return true;
+    });
+    setTasks([...data]);
+  };
+
   return (
     <div className="content">
       <div className="container">
         <section className="section">
-          <ul>
-            {tasks.map((a, i, arr) => (
-              <li key={i}> {a}</li>
-            ))}
-          </ul>
+          <List tasks={tasks} onDelete={onDelete} />
         </section>
         <hr />
         <section className="section">
