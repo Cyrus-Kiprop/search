@@ -1,5 +1,160 @@
 import React, { useState, useEffect } from "react";
-import "bulma/css/bulma.css";
+
+
+import 'bulma/css/bulma.css'
+
+// some data
+const data = 
+  [
+	{
+		"ID": "1",
+		"Name": "Senpai",
+		"Gender": "1",
+		"Class": "32",
+		"Club": "0",
+		"Persona": "1",
+
+	},
+	{
+		"ID": "2",
+		"Name": "Yui Rio",
+		"Gender": "0",
+		"Class": "11",
+		"Club": "0",
+		"Persona": "5",
+	
+	
+	},
+	{
+		"ID": "3",
+		"Name": "Yuna Hina",
+		"Gender": "0",
+		"Class": "12",
+		"Club": "0",
+		"Persona": "6",
+	
+	
+	},
+	{
+		"ID": "4",
+		"Name": "Koharu Hinata",
+		"Gender": "0",
+		"Class": "21",
+		"Club": "0",
+		"Persona": "6",
+	
+	},
+	{
+		"ID": "5",
+		"Name": "Mei Mio",
+		"Gender": "0",
+		"Class": "22",
+		"Club": "0",
+		"Persona": "6",
+		
+	},
+	{
+		"ID": "6",
+		"Name": "Saki Miyu",
+		"Gender": "0",
+		"Class": "31",
+		"Club": "0",
+		"Persona": "6",
+	
+	},
+	{
+		"ID": "7",
+		"Name": "Kokona Haruka",
+		"Gender": "0",
+		"Class": "32",
+		"Club": "0",
+		"Persona": "6",
+	
+	},
+	{
+		"ID": "8",
+		"Name": "Haruto Yuto",
+		"Gender": "1",
+		"Class": "11",
+		"Club": "0",
+		"Persona": "2",
+	
+	},
+	{
+		"ID": "9",
+		"Name": "Sota Yuki",
+		"Gender": "1",
+		"Class": "12",
+		"Club": "0",
+		"Persona": "2",
+	
+	},
+	{
+		"ID": "10",
+		"Name": "Hayato Haruki",
+		"Gender": "1",
+		"Class": "21",
+		"Club": "0",
+		"Persona": "2",
+	
+	},
+	{
+		"ID": "11",
+		"Name": "Ryusei Koki",
+		"Gender": "1",
+		"Class": "22",
+		"Club": "0",
+		"Persona": "2",
+	
+	},
+	{
+		"ID": "12",
+		"Name": "Sora Sosuke",
+		"Gender": "1",
+		"Class": "31",
+		"Club": "0",
+		"Persona": "2",
+	
+	},
+	{
+		"ID": "13",
+		"Name": "Riku Soma",
+		"Gender": "1",
+		"Class": "32",
+		"Club": "0",
+		"Persona": "2",
+	
+	},
+	{
+		"ID": "14",
+		"Name": "Pippi Osu",
+		"Gender": "0",
+		"Class": "32",
+		"Club": "11",
+		"Persona": "1",
+	
+	},
+	{
+		"ID": "15",
+		"Name": "Ryuto Ippongo",
+		"Gender": "1",
+		"Class": "32",
+		"Club": "11",
+		"Persona": "1",
+		
+	},
+	{
+		"ID": "16",
+		"Name": "Midori Gurin",
+		"Gender": "0",
+		"Class": "11",
+		"Club": "11",
+		"Persona": "6",
+		
+	}
+  ]
+
+
 // database mocking
 let initialState = [
   "Wash the dishes",
@@ -8,31 +163,31 @@ let initialState = [
   "Catch up with some code reviews",
   "Pair with my Micorverse pairing partner"
 ];
-
+​
 export const App = () => {
-  const [task, setTask] = useState(null); // initiating the default state
+  const [tasks, setTasks] = useState(initialState); // overall state
 
-  // handle adding items to the state
+  const [task, setTask] = useState('') // individual task
+​
+  // add Items to the main Task state
   const addItem = event => {
-    event.preventDefault();
-    if (!initialState.includes(task)) {
-      console.log(task);
-      initialState.splice(initialState.length - 1, 0, task);
-    }
+    const todos = tasks.slice(); // making  copy of the array
+    console.log(todos);
+    setTasks([...todos, task ]);
   };
-
-  // handles user inputs
+​
+  // handles the user inputs
   const handleChange = event => {
-    if (event) event.preventDefault();
-    setTask(event.target.value);
+   if(event) event.preventDefault();
+   setTask(event.target.value); // sets the task state with keyed values
   };
-
+​
   return (
     <div className="content">
       <div className="container">
         <section className="section">
           <ul>
-            {initialState.map((a, i, arr) => (
+            {tasks.map((a, i, arr) => (
               <li key={i}> {a}</li>
             ))}
           </ul>
